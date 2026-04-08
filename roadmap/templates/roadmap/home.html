@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Learning Roadmap</title>
+</head>
+<body>
+<body>
+
+    <a href="/dashboard/" class="btn btn-dark mt-3">
+    Go to Dashboard
+    </a>
+
+<div class="container mt-5">
+    <h1 class="text-center text-primary">🚀 Select Your Learning Domain</h1>
+
+    <div class="row mt-4">
+        {% for domain in domains %}
+            <div class="col-md-4">
+                <div class="card p-3 shadow">
+                    <h4>{{ domain.name }}</h4>
+                    <a href="{% url 'roadmap' domain.id %}" class="btn btn-success mt-2">
+                        View Roadmap
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</body>
+</html>
