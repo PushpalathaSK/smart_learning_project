@@ -35,3 +35,14 @@ class UserProgress(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.topic.name}"
+    
+from django.utils.timezone import now
+
+class UserProgress(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    completed = models.BooleanField(default=False)
+    completed_date = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.topic.name}"

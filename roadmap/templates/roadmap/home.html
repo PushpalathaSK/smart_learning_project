@@ -1,32 +1,47 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Smart Learning Roadmap</title>
-</head>
-<body>
-<body>
+{% extends 'roadmap/base.html' %}
 
-    <a href="/dashboard/" class="btn btn-dark mt-3">
-    Go to Dashboard
+{% block content %}
+
+<!-- 🔥 HERO SECTION -->
+<div class="hero-section text-center mb-5">
+
+    <h1 class="hero-title">Smart Learning Roadmap</h1>
+    <p class="hero-subtitle">
+        Choose your domain and start learning step-by-step with curated resources
+    </p>
+
+    <a href="/dashboard/" class="btn btn-warning mt-3 px-4">
+        Go to Dashboard
     </a>
 
-<div class="container mt-5">
-    <h1 class="text-center text-primary">🚀 Select Your Learning Domain</h1>
-
-    <div class="row mt-4">
-        {% for domain in domains %}
-            <div class="col-md-4">
-                <div class="card p-3 shadow">
-                    <h4>{{ domain.name }}</h4>
-                    <a href="{% url 'roadmap' domain.id %}" class="btn btn-success mt-2">
-                        View Roadmap
-                    </a>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
 </div>
 
-</body>
-</body>
-</html>
+<!-- 🔥 DOMAIN SECTION -->
+<h3 class="text-light mb-3">📚 Choose Your Domain</h3>
+
+<div class="row">
+
+    {% for domain in domains %}
+        <div class="col-md-4">
+
+            <div class="domain-card">
+
+                <h4 class="mb-2">{{ domain.name }}</h4>
+
+                <p class="text-muted small">
+                    Structured roadmap with topics and learning resources
+                </p>
+
+                <a href="{% url 'roadmap' domain.id %}" 
+                   class="btn btn-outline-warning btn-sm mt-2">
+                    View Roadmap →
+                </a>
+
+            </div>
+
+        </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

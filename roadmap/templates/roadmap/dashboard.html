@@ -1,38 +1,45 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+{% extends 'roadmap/base.html' %}
 
-<div class="container mt-5">
-    <h1 class="text-primary">📊 Your Learning Dashboard</h1>
+{% block content %}
 
-    <div class="row mt-4">
-        {% for item in dashboard_data %}
-            <div class="col-md-4">
-                <div class="card p-3 shadow mb-3">
+<h2 class="text-warning">📊 Dashboard</h2>
 
-                    <h4>{{ item.domain.name }}</h4>
+<div class="row">
 
-                    <p>Progress: {{ item.progress }}%</p>
+    {% for item in dashboard_data %}
+        <div class="col-md-4">
 
-                    <div class="progress mb-2">
-                        <div class="progress-bar"
-                             style="width: {{ item.progress }}%;">
-                        </div>
-                    </div>
+            <div class="card-dark mb-3">
 
-                    <a href="/roadmap/{{ item.domain.id }}/" class="btn btn-primary">
-                        View Roadmap
-                    </a>
+                <h5>{{ item.domain.name }}</h5>
 
+                <p>{{ item.progress }}%</p>
+
+                <div class="progress mb-2">
+                    <div class="progress-bar" style="width: {{ item.progress }}%;"></div>
                 </div>
-            </div>
-        {% endfor %}
-    </div>
-</div>
 
-</body>
-</html>
+                <a href="/roadmap/{{ item.domain.id }}/" class="btn btn-warning btn-sm">
+                    Open
+                </a>
+
+            </div>
+
+        </div>
+    {% endfor %}
+
+</div>
+<div class="card-dark mb-4">
+
+    <h4>🔥 Current Streak</h4>
+
+    <h2 class="text-warning">{{ streak }} days</h2>
+
+    {% if streak == 0 %}
+        <p class="text-muted">Start learning today to build your streak!</p>
+    {% else %}
+        <p class="text-success">Keep it going! 🚀</p>
+    {% endif %}
+
+</div>
+{% endblock %}
